@@ -4,8 +4,10 @@ const productSchema = new Schema(
   {
     pImage: String,
     pPrice: String,
+    pDisc: String,
     pName: String,
     pColor: String,
+    pSize: String,
     pID: {
       type: String,
       required: true,

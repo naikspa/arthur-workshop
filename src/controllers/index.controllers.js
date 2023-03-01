@@ -1,4 +1,5 @@
 const controller = {};
+
 controller.index = async (req, res) => {
   const products = await Product.find().lean();
   res.render("index", { x: products });
@@ -8,13 +9,13 @@ controller.compra = (req, res) => {
 };
 
 const Product = require("../model/Product");
-
-const clientModel = require("../model/client");
+const Clients = require("../model/client");
+const cookie = require("cookie");
 
 controller.createUser = async (req, res, next) => {
   try {
     console.log(req.body);
-    const newClient = new clientModel(req.body);
+    const newClient = new Clients(req.body);
     await newClient.save();
     res.redirect("/compra");
   } catch (error) {
@@ -35,10 +36,36 @@ controller.addProduct = async (req, res) => {
     console.log(error);
   }
 };
-
+controller.loginPanel = (req, res) => {
+  res.render("adminlogin");
+};
+controller.loginSentPanel = (req, res) => {
+  let info = req.body;
+  console.log(info);
+  if (
+    info.username == process.env.ENV_WS_USER ||
+    info.password == process.env.ENV_WS_PASSWORD
+  ) {
+    const isLoggedCookie = cookie.serialize("isLogged", "y", {
+      maxAge: 86400, // tiempo de vida de la cookie en segundos
+      httpOnly: true, // solo se puede acceder a la cookie a través de HTTP
+    });
+    res.setHeader("Set-Cookie", isLoggedCookie);
+    res.redirect("/admin/panel");
+  } else {
+    console.log("LA CONTRASEÑA O EL USUARIO SON INCORRECTOS");
+  }
+};
 controller.adminPanel = async (req, res) => {
-  const products = await Product.find().lean();
-  res.render("adminpanel", { x: products });
+  // Accede a las cookies de la solicitud HTTP
+  const cookies = req.cookies;
+  if (cookies.isLogged == "y") {
+    const products = await Product.find().lean();
+    const client = await Clients.find().lean();
+    res.render("adminpanel", { x: products, y: client });
+  } else {
+    res.redirect("/admin");
+  }
 };
 
 controller.renderEdit = async (req, res) => {

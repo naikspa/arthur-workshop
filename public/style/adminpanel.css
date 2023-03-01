@@ -109,7 +109,7 @@
   background-color: rgb(2, 82, 2);
 }
 
-/* SEPARADOR */
+/* SEPARADOR ---------------------------------------------------------------------------------------------- */
 
 .form-container {
   width: 100vw;
@@ -164,4 +164,16 @@ form {
 .titulo-h1 {
   font-size: 50px;
   color: #555;
+}
+
+/* SEPARADOR ----------------------------------------------------------------------------------------------------*/
+
+.orders {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.c-info {
+  margin: 10px 0;
 }

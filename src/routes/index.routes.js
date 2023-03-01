@@ -13,7 +13,8 @@ router.get("/", controller.index);
 router.get("/compra", controller.compra);
 
 // ESTA SERIA PARA EL LOGIN
-router.get("/admin");
+router.get("/admin", controller.loginPanel);
+router.post("/admin", controller.loginSentPanel);
 
 // ESTA ES LA RUTA DEL PANEL
 router.get("/admin/panel", controller.adminPanel);

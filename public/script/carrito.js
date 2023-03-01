@@ -10,10 +10,12 @@ let totalPrice = 0;
 
 class Carrito {
   comprarProducto(e) {
+    console.log(e)
     e.preventDefault();
     if (e.target.classList.contains("buy")) {
       const producto = e.target.parentElement.parentElement;
       this.leerDatosProducto(producto);
+      console.log(producto)
     }
   }
 
@@ -28,6 +30,7 @@ class Carrito {
       color: producto.querySelector(".color").textContent,
       size: "M (130x60cms)",
     };
+    console.log(infoProducto)
     let productosLS = this.obtenerProductosLocalStorage();
     productosLS.forEach((productoLS) => {
       if (productoLS.id === infoProducto.id) {
@@ -294,12 +297,11 @@ const listaProductos = document.querySelector(".shop-res-items");
 let productsAmount = carro.obtenerProductosLocalStorage().length;
 
 const cargarEventos = () => {
-  if (productos) {
+  
     productos.addEventListener("click", (e) => {
       carro.comprarProducto(e);
       checkCart();
     });
-  }
 
   carrito.addEventListener("click", (e) => {
     carro.eliminarProducto(e);
@@ -340,5 +342,5 @@ const cargarEventos = () => {
 };
 
 // --
-modProductAmount();
 cargarEventos();
+modProductAmount();

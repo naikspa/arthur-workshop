@@ -11,7 +11,6 @@ head
   link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65' crossorigin='anonymous')
   title Arthur Workshop
 
-if x
   .products-container
     .new-product
       a.new-btn(href="/admin/panel/new") Añadir Producto
@@ -21,20 +20,29 @@ if x
           img.product-image(src= `../products-imgs/${prod.pImage}`)
         .price-container 
           h2.product-price= prod.pPrice
+        .disc-container 
+          h2.product-disc= prod.pDisc
         .desc-container 
           h4.product-desc= prod.pName
         .color-container
           h4.product-color= `Color ${prod.pColor}`  
+        .size-container 
+          h4.product-size= prod.pSize
         .id-container 
           h3.product-id= `ID: ${prod.pID}`
         .actions 
           a#edit.action-btn(href=`/admin/panel/${prod._id}/edit`) Editar
           a#delete.action-btn(href=`/admin/panel/${prod. _id}/delete`) Eliminar
-
-
-else 
-    #c 
-        .n-products
-            h1 NO HAY PRODUCTOS
-        .new-product
-            a.new-btn(href="/admin/panel/new") Añadir Producto
+    .orders
+      h1.orders-h1 Pedidos
+    each client in y
+      .products
+        .client-name-container
+          h2.client-name.c-info= `Nombre del cliente: "${client.nameClient}"`
+        .client-number-container
+          h2.client-number.c-info= `Numero de teléfono del cliente: "${client.telNumber}"`
+        .client-name-container
+          h2.client-adress.c-info= `Direccion del cliente: "${client.adress}"`
+        .client-products-container
+          h2.client-products.c-info= client.products 
+      
