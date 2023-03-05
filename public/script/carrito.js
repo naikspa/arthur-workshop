@@ -297,11 +297,14 @@ const listaProductos = document.querySelector(".shop-res-items");
 let productsAmount = carro.obtenerProductosLocalStorage().length;
 
 const cargarEventos = () => {
-  
+  //la verificación es porque en /compra no detecta productos y se buguea, solo andará el codigo si estan los productos
+  if(productos){
     productos.addEventListener("click", (e) => {
-      carro.comprarProducto(e);
-      checkCart();
-    });
+    carro.comprarProducto(e);
+    checkCart();
+  });
+}
+  
 
   carrito.addEventListener("click", (e) => {
     carro.eliminarProducto(e);

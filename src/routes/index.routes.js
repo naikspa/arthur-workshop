@@ -23,5 +23,8 @@ router.post("/admin/panel/new", controller.addProduct);
 router.get("/admin/panel/:id/edit", controller.renderEdit);
 router.post("/admin/panel/:id/edit", controller.editProduct);
 router.get("/admin/panel/:id/delete", controller.deleteProduct);
+router.get("/admin/panel/:id/done", controller.orderDone);
+router.get("/admin/panel/:id/undoOrder", controller.undoOrder);
+router.get("/admin/panel/:id/deleteOrder", controller.deleteOrder);
 
 module.exports = router;

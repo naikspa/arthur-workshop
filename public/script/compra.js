@@ -83,4 +83,4 @@ carrito2.addEventListener('click', (e)=>{
     }
 })
 
-if(obtenerProductosLocalStorage().length == 0){location.href='/inicio'}
+if(obtenerProductosLocalStorage().length == 0){location.href='/'}

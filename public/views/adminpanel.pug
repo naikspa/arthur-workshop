@@ -14,6 +14,7 @@ head
   .products-container
     .new-product
       a.new-btn(href="/admin/panel/new") Añadir Producto
+      a.back-btn(href="/") Ir a la Pagina Principal
   each prod in x
     .products
         .img-container 
@@ -33,16 +34,77 @@ head
         .actions 
           a#edit.action-btn(href=`/admin/panel/${prod._id}/edit`) Editar
           a#delete.action-btn(href=`/admin/panel/${prod. _id}/delete`) Eliminar
-    .orders
+  .orders
       h1.orders-h1 Pedidos
-    each client in y
-      .products
-        .client-name-container
-          h2.client-name.c-info= `Nombre del cliente: "${client.nameClient}"`
-        .client-number-container
-          h2.client-number.c-info= `Numero de teléfono del cliente: "${client.telNumber}"`
-        .client-name-container
-          h2.client-adress.c-info= `Direccion del cliente: "${client.adress}"`
-        .client-products-container
-          h2.client-products.c-info= client.products 
+  .products-max-container
+      each client in y
+        if client.done == false
+          .products
+            .client-name-container
+              h4.client-name.c-info= `Nombre del cliente: "${client.nameClient}"`
+            .client-number-container
+              h4.client-number.c-info= `Numero de teléfono del cliente: "${client.telNumber}"`
+            .client-name-container
+              h4.client-adress.c-info= `Direccion del cliente: "${client.adress}"`
+            .client-products-container
+              h4.client-products.c-info Productos comprados:
+              if JSON.parse(client.products).length == 1 
+                img.order-img(src=JSON.parse(client.products)[0].img, width=200, height=200)
+                h3=`Id: ${JSON.parse(client.products)[0].id}`
+                h3=`Producto: ${JSON.parse(client.products)[0].name}`
+                h3=`Precio: ${JSON.parse(client.products)[0].price}`
+                h3=`Descuento: ${JSON.parse(client.products)[0].disc}`
+                h3=`Tamaño: ${JSON.parse(client.products)[0].size}`
+                h3=`Cantidad: ${JSON.parse(client.products)[0].amount}`
+                h3=`Color: ${JSON.parse(client.products)[0].color}`
+              if JSON.parse(client.products).length > 1 
+               each cli in JSON.parse(client.products)
+                img.order-img(src=cli.img, width=200, height=200)
+                h3=`Id: ${cli.id}`
+                h3=`Producto: ${cli.name}` 
+                h3=`Precio: ${cli.price}`
+                h3=`Descuento: ${cli.disc}`
+                h3=`Tamaño: ${cli.size}`
+                h3=`Cantidad: ${cli.amount}`
+                h3=`Color: ${cli.color}`
+            a#edit.action-btn(href=`/admin/panel/${client._id}/done`) Pedido Entregado
+        else
+            
+      
+  .h1-orders
+      h1.orders-h1 Pedidos Hechos
+  .products-max-container
+      each client in y
+        if client.done == true
+          .products
+            .client-name-container
+              h4.client-name.c-info= `Nombre del cliente: "${client.nameClient}"`
+            .client-number-container
+              h4.client-number.c-info= `Numero de teléfono del cliente: "${client.telNumber}"`
+            .client-name-container
+              h4.client-adress.c-info= `Direccion del cliente: "${client.adress}"`
+            .client-products-container
+              h4.client-products.c-info Productos comprados:
+              if JSON.parse(client.products).length == 1 
+                img.order-img(src=JSON.parse(client.products)[0].img, width=200, height=200)
+                h3=`Id: ${JSON.parse(client.products)[0].id}`
+                h3=`Producto: ${JSON.parse(client.products)[0].name}`
+                h3=`Precio: ${JSON.parse(client.products)[0].price}`
+                h3=`Descuento: ${JSON.parse(client.products)[0].disc}`
+                h3=`Tamaño: ${JSON.parse(client.products)[0].size}`
+                h3=`Cantidad: ${JSON.parse(client.products)[0].amount}`
+                h3=`Color: ${JSON.parse(client.products)[0].color}`
+              if JSON.parse(client.products).length > 1 
+               each cli in JSON.parse(client.products)
+                img.order-img(src=cli.img, width=200, height=200)
+                h3=`Id: ${cli.id}`
+                h3=`Producto: ${cli.name}` 
+                h3=`Precio: ${cli.price}`
+                h3=`Descuento: ${cli.disc}`
+                h3=`Tamaño: ${cli.size}`
+                h3=`Cantidad: ${cli.amount}`
+                h3=`Color: ${cli.color}`
+              a#edit.action-btn(href=`/admin/panel/${client._id}/undoOrder`) Cancelar Entrega
+              a#edit.action-btn(href=`/admin/panel/${client._id}/deleteOrder`) Borrar
+        else 
       

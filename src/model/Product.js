@@ -11,7 +11,6 @@ const productSchema = new Schema(
     pID: {
       type: String,
       required: true,
-      unique: true,
     },
     inCart: { type: Boolean, default: false },
   },

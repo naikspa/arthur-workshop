@@ -7,6 +7,20 @@
   list-style: none;
 }
 
+body {
+  background: #000000; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #434343,
+    #000000
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
 .products-container {
   width: 100vw;
   display: flex;
@@ -21,15 +35,15 @@
 }
 
 .products {
-  background-color: rgb(184, 184, 184);
+  background-color: rgb(138, 138, 138);
   border-radius: 10px;
-  border: 2px solid #000;
   margin: 50px;
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 15px;
+  overflow-y: auto;
 }
 
 .img-container {
@@ -41,7 +55,6 @@
   height: 200px;
   margin: 15px;
   border-radius: 10px;
-  border: 2px solid #000;
 }
 
 .actions {
@@ -60,7 +73,7 @@
   align-items: center;
   text-decoration: none;
   color: #fff;
-  border: 2px solid #000;
+  transition: 0.3s;
 }
 
 .action-btn:hover {
@@ -69,10 +82,19 @@
 
 #edit {
   background-color: rgb(42, 118, 132);
+  padding: 5px;
+}
+
+#edit:hover {
+  background-color: rgb(22, 83, 94);
 }
 
 #delete {
   background-color: rgb(214, 48, 48);
+}
+
+#delete:hover {
+  background-color: rgb(131, 26, 26);
 }
 
 .n-products {
@@ -87,8 +109,10 @@
   width: 100vw;
   height: 100px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 .new-btn {
@@ -96,17 +120,27 @@
   height: 50px;
   background-color: green;
   display: inline-flex;
-  border: none;
   border-radius: 10px;
   justify-content: center;
   align-items: center;
   color: #fff;
   text-decoration: none;
+  margin-bottom: 10px;
+  transition: 0.3s;
 }
 
 .new-btn:hover {
   color: #fff;
   background-color: rgb(2, 82, 2);
+}
+
+.back-btn {
+  font-size: 20px;
+  color: #c7c7c7;
+}
+
+.back-btn:hover {
+  color: #696969;
 }
 
 /* SEPARADOR ---------------------------------------------------------------------------------------------- */
@@ -123,7 +157,6 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-
   background-color: #b9b9b9;
   border-radius: 10px;
   padding: 20px 40px;
@@ -147,6 +180,8 @@
 
 #submit {
   margin-top: 20px;
+  border-radius: 5px;
+  border: 2px solid #3f3f3f;
 }
 
 form {
@@ -166,6 +201,12 @@ form {
   color: #555;
 }
 
+.new-input {
+  border-radius: 5px;
+  border: none;
+  padding: 3px;
+}
+
 /* SEPARADOR ----------------------------------------------------------------------------------------------------*/
 
 .orders {
@@ -174,6 +215,61 @@ form {
   margin-top: 20px;
 }
 
+.orders-container {
+  display: flex;
+  flex-direction: column;
+}
+
 .c-info {
   margin: 10px 0;
+}
+
+.chk-btn {
+  margin-top: 20px;
+  background-color: green;
+  border-radius: 5px;
+  border: none;
+  padding: 6px;
+  color: #e6e6e6;
+}
+
+.order-img {
+  border-radius: 5px;
+  border: 2px solid #000;
+}
+
+.orders-h1 {
+  color: #bebebe;
+  text-align: center;
+}
+
+.h1-orders {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.products-orders {
+  background-color: rgb(184, 184, 184);
+  border-radius: 10px;
+  border: 2px solid #000;
+  margin: 50px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.client-products-container {
+  max-height: 525px;
+  width: 100%;
+  height: 550px;
+  overflow: auto;
+}
+
+.products-max-container {
+  display: flex;
+  flex-wrap: wrap;
 }

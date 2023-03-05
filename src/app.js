@@ -28,5 +28,5 @@ app.use(require("./routes/index.routes"));
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.listen(port, () => {
-  console.log("Server on Port " + process.env.ENV_PORT);
+  console.log("Server on Port " + process.env.PORT);
 });
